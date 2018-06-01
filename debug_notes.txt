@@ -1,0 +1,12 @@
+1. Saw "err_connection_refused" error when trying to load page. Noticed in
+docker-compose.yml that port declaration for nginx was backwards.
+Switched to 8080:80.
+2. Received "502 Bad Gateway Error" - noticed port is declared in flaskapp.conf
+but nothing in app.py referred to port 5001. Added port in app.run method call
+3. Ran docker-compose logs to see logs up until this point. Saw that debug mode
+was not on for flask, added that into app.run method in app.py. Used these logs
+to add print statements for better understanding.
+4. When an item is added to the database and the success page is brought up,
+the results aren't rendering. Printed out the results list and saw that it was
+a list of objects. Created loop to go through qry.all() to append name of each
+items to results list and then returned that list.
